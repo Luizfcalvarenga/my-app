@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Switch, Link } from "react-router-dom";
 
 
 
@@ -94,7 +94,7 @@ class Game extends React.Component {
     const move = history.map((step, move) => {
       const desc = move ?
       'Go to move #' + move :
-      'Go to game start';
+      'Start Game';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -109,6 +109,31 @@ class Game extends React.Component {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
 
+
+        <BrowserRouter>
+
+
+          <Routes>
+            <div>
+              <ul>
+                <li>
+                  <Link to="/">App</Link>
+                </li>
+              </ul>
+
+
+                  <Route path="/" element={<App />}/>
+  
+            </div>
+          </Routes>
+        </BrowserRouter>
+
+
+
+
+
+
+
     return (
       <div className="game">
         <div className="game-board">
@@ -121,19 +146,13 @@ class Game extends React.Component {
           <div>{ status }</div>
           <ol>{move}</ol>
         </div>
-        <button>
-          <BrowserRouter>
-            <div className="container mt-2" style={{ marginTop: 40 }}>
-              <Routes>
-                <Route path="/" element={<App />}/>
-              </Routes>
-            </div>
-          </BrowserRouter>
-        </button>
+
+
       </div>
     );
   }
 }
+
 
 
 function calculateWinner(squares) {
@@ -159,4 +178,5 @@ function calculateWinner(squares) {
 // ========================================
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(<Game />);
