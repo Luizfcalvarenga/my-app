@@ -125,7 +125,7 @@ class Game extends React.Component {
           <BrowserRouter>
             <div className="container mt-2" style={{ marginTop: 40 }}>
               <Routes>
-                <Route path="/" component={App}/>
+                <Route path="/" element={<App />}/>
               </Routes>
             </div>
           </BrowserRouter>
